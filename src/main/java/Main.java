@@ -1,3 +1,5 @@
+package main.java;
+
 import javax.swing.*;
 
 public class Main {
@@ -16,7 +18,7 @@ public class Main {
         String mail = JOptionPane.showInputDialog("Ingrese su mail");
 
         Usuario usuario1 = new Usuario(usuario, contrasenia, nombre, apellido, telefono, mail);
-        JOptionPane.showMessageDialog(null, "Usuario creado: \nnombre: " + usuario1.getNombre() + "\napellido: "
+        JOptionPane.showMessageDialog(null, "main.java.Usuario creado: \nnombre: " + usuario1.getNombre() + "\napellido: "
         + usuario1.getApellido() + "\nusuario: " + usuario1.getUsuario() + "\ncontraseña: " + usuario1.getContrasenia() + "\ntelefono: " +
                 usuario1.getNumeroTelefono() + "\nmail: " + usuario1.getMail());
     }
