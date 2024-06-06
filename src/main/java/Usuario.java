@@ -16,6 +16,9 @@ public class Usuario {
         if (!esApellidoValido(apellido)) {
             throw new IllegalArgumentException("El apellido no debe contener números.");
         }
+        if (!apellidoConMayuscula(apellido)){
+            throw new IllegalArgumentException("El apellido debe empezar con mayúscula.");
+        }
         if (!esUsuarioValido(usuario)) {
             throw new IllegalArgumentException("El usuario debe tener al menos 5 caracteres y no debe contener espacios.");
         }
@@ -25,7 +28,7 @@ public class Usuario {
         if (!esTelefonoValido(telefono)) {
             throw new IllegalArgumentException("El teléfono debe contener solo números y tener entre 10 y 15 dígitos.");
         }
-        if (!esEmailValido(email)) {
+        if (!esEmailValido(email) && !esMailVacio(email)) {
             throw new IllegalArgumentException("El formato del email es inválido.");
         }
         this.nombre = nombre;
@@ -51,26 +54,32 @@ public Usuario(){
         return nombre.matches("[a-zA-Z ]+");
     }
 
-    private boolean esApellidoValido(String apellido) {
+    public boolean esApellidoValido(String apellido) {
         return apellido.matches("[a-zA-Z ]+");
     }
 
-    private boolean esUsuarioValido(String usuario) {
+    public boolean esUsuarioValido(String usuario) {
         return usuario.matches("[a-zA-Z0-9]{5,}");
     }
 
-    private boolean esContraseniaValida(String contraseña) {
+    public boolean esContraseniaValida(String contraseña) {
         return contraseña.length() >= 8;
     }
 
-    private boolean esTelefonoValido(String telefono) {
+    public boolean esTelefonoValido(String telefono) {
         return telefono.matches("\\d{10,15}");
     }
 
-    private boolean esEmailValido(String email) {
+    public boolean esEmailValido(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern pattern = Pattern.compile(emailRegex);
         return pattern.matcher(email).matches();
+    }
+    public boolean esMailVacio(String email){
+        return email=="";
+    }
+    public boolean apellidoConMayuscula(String apellido) {
+        return apellido != null && !apellido.isEmpty() && Character.isUpperCase(apellido.charAt(0));
     }
 
     @Override
