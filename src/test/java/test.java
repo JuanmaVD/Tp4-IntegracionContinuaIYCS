@@ -18,7 +18,7 @@ public class test {
     @Test
     public void testEsNombreValido_ConNumeros() {
         Usuario usuario = new Usuario();
-        assertFalse(usuario.esNombreValido("Juan123"));
+        assertFalse(usuario.esNombreValido("Juan1234"));
     }
 
     //Validar que teléfono debe contener solo números y tener entre 10 y 15 dígitos
