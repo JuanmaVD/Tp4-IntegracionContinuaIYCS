@@ -1,4 +1,5 @@
 package main.java;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Usuario {
@@ -22,7 +23,7 @@ public class Usuario {
         if (!esUsuarioValido(usuario)) {
             throw new IllegalArgumentException("El usuario debe tener al menos 5 caracteres y no debe contener espacios.");
         }
-        if (!esContraseniaValida(contrasenia)) {
+        if (!esContraseniaValida(contrasenia) && !esContraseniaVacio(contrasenia)) {
             throw new IllegalArgumentException("La contraseña debe tener al menos 8 caracteres.");
         }
         if (!esTelefonoValido(telefono)) {
@@ -57,6 +58,9 @@ public Usuario(){
     public boolean esApellidoValido(String apellido) {
         return apellido.matches("[a-zA-Z ]+");
     }
+    public boolean apellidoConMayuscula(String apellido) {
+        return Character.isUpperCase(apellido.charAt(0));
+    }
 
     public boolean esUsuarioValido(String usuario) {
         return usuario.matches("[a-zA-Z0-9]{5,}");
@@ -78,9 +82,10 @@ public Usuario(){
     public boolean esMailVacio(String email){
         return email=="";
     }
-    public boolean apellidoConMayuscula(String apellido) {
-        return apellido != null && !apellido.isEmpty() && Character.isUpperCase(apellido.charAt(0));
+    public boolean esContraseniaVacio(String contrasenia){
+        return Objects.equals(contrasenia, "");
     }
+
 
     @Override
     public String toString() {

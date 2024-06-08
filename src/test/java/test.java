@@ -55,7 +55,7 @@ public class test {
         Usuario usuario = new Usuario();
         assertTrue(usuario.esEmailValido("boca@boca"));
     }
-    //"El mail debe tener A-Z  @ A-Z "
+    //Comprobar si no tiene el formato tire error
     @Test
     public void mailTieneFormatoInadecuado(){
         Usuario usuario = new Usuario();
@@ -69,12 +69,21 @@ public class test {
         Usuario usuario = new Usuario();
         assertTrue( usuario.esMailVacio(""));
     }
+
     //Validar que el apellido contenga mayuscula inicial
     @Test
     public void validarApellidoMayusculaInicial(){
         Usuario usuario = new Usuario();
         String apellido = "Martinez";
         assertTrue("El nombre de usuario no debe de contener numeros",usuario.apellidoConMayuscula(apellido));
+    }
+
+    //Validar que tire el error cuando el apellido no tenga mayuscula
+    @Test
+    public void validarApellidoNoMayusculaInicial(){
+        Usuario usuario = new Usuario();
+        String apellido = "martinez";
+        assertFalse("El nombre de usuario no debe de contener numeros",usuario.apellidoConMayuscula(apellido));
     }
 
     //validar si la contraseña tiene 8 caracteres
@@ -85,13 +94,26 @@ public class test {
         assertTrue("La contraseña debe tener al menos 8 caracteres.",usuario.esContraseniaValida(contrasenia));
     }
 
-    //validar si la contraseña no tiene 8 caracteres
+    //validar si la contraseña no tiene 8 caracteres tire el error
     @Test
     public void validarLongitudContraseniaIncorrecta(){
         Usuario usuario = new Usuario();
         String contrasenia = "1234567";
         assertFalse("La contraseña debe tener al menos 8 caracteres.",usuario.esContraseniaValida(contrasenia));
     }
+    //comprobar si la contraseña esta vacia
+    @Test
+    public void esContraseniaVacio(){
+        Usuario usuario = new Usuario();
+        assertTrue( usuario.esContraseniaVacio(""));
+    }
+    //comprobar si la contraseña no esta vacia
+    @Test
+    public void esContraseniaNoVacio(){
+        Usuario usuario = new Usuario();
+        assertFalse( usuario.esContraseniaVacio("holacomoestas"));
+    }
+
 
 }
 
